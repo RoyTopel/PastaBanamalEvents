@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">The Culinary Peak: Exclusive Dinner Series</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons for aesthetic elements -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+   
+    <!-- Load Montserrat font: Bold (700) for headers and Medium (500) for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+   
+    <style>
+        /* Define the new warm color palette */
+        :root {
+            /* User provided colors */
+            --color-cream-light: #F7F1E3; /* Main Background */
+            --color-cream-medium: #EEDFCC; /* Card/Section Background */
+            --color-tan-medium: #DCC4A3; /* Highlight 1 */
+            --color-tan-dark: #C9A987; /* Highlight 2 */
+            --color-brown-accent: #A87F5F; /* Primary Accent / CTA BG (The Bold Color) */
+           
+            /* Custom Dark for High Contrast Text (based on the palette for warmth) */
+            --color-text-dark: #4A352E;
+        }
+
+
+        /* Define custom styles for the aesthetic */
+        body {
+            /* Montserrat Medium (weight 500) */
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            background-color: var(--color-cream-light); /* Cream Background */
+            color: var(--color-text-dark); /* Dark Brown Text */
+        }
+        /* Montserrat Bold (weight 700) for Headings */
+        .font-serif-elegant {
+            font-family: 'Montserrat', serif;
+            font-weight: 700; /* Bold */
+        }
+        .container-section {
+            max-width: 1280px;
+        }
+        .hero-background {
+            /* ---------------------------------------------------------------------- */
+            /* CRITICAL CHECK: If the image doesn't load, please verify that the Google Drive file
+            permissions are set to "Anyone with the link can view" (Public).
+            This specific URL format (uc?export=view&id=FILE_ID) requires public access.
+            */
+            background-image: url('https://drive.google.com/uc?export=view&id=1Ctch0PHK_iu7JvnCadSHjQ8NPXq2Id0F');
+           
+            /* Fallback background color in case the image fails to load */
+            background-color: var(--color-tan-medium);
+           
+            /* ---------------------------------------------------------------------- */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect for depth */
+            position: relative;
+        }
+        .overlay {
+            /* Light, warm overlay for text readability */
+            background-color: rgba(247, 241, 227, 0.75);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background-color: rgba(247, 241, 227, 0.95); /* Semi-transparent light bar */
+            backdrop-filter: blur(5px);
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            border-top: 1px solid var(--color-tan-medium);
+        }
+        .glow-shadow {
+            /* Soft warm glow matching the palette */
+            box-shadow: 0 0 15px rgba(201, 169, 135, 0.8);
+        }
+
+
+        /* Menu showcase - simulating rustic board */
+        .menu-board {
+            background-color: var(--color-tan-dark); /* Darker Tan */
+            background-image: none; /* Removed the dark pattern */
+        }
+        .menu-item-text {
+            font-family: 'Montserrat', serif;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+
+        /* Custom utility classes for easy replacement */
+        .bg-custom-cream-light { background-color: var(--color-cream-light); }
+        .bg-custom-cream-medium { background-color: var(--color-cream-medium); }
+        .bg-custom-dark-accent { background-color: var(--color-brown-accent); }
+        .text-custom-tan { color: var(--color-tan-medium); }
+        .text-custom-dark-brown { color: var(--color-text-dark); }
+        .text-custom-accent { color: var(--color-brown-accent); }
+        .border-custom-accent { border-color: var(--color-brown-accent); }
+    </style>
+</head>
+<body>
+
+
+    <!-- Language Toggle Button (Top Left) -->
+    <div id="language-toggle" class="fixed top-4 left-4 z-50">
+        <button onclick="toggleLanguage()" id="lang-button"
+            class="px-3 py-1 bg-custom-dark-accent text-white text-sm rounded-full hover:opacity-80 transition duration-200 shadow-md">
+            עברית (Hebrew)
+        </button>
+    </div>
+
+
+    <!-- Hero Section -->
+    <div id="hero" class="hero-background h-screen flex items-center justify-center">
+        <div class="overlay"></div>
+        <div class="relative z-10 text-center p-6 md:p-12">
+            <h1 id="h1-title" class="font-serif-elegant text-5xl sm:text-7xl font-bold text-custom-dark-brown tracking-tighter max-w-4xl mx-auto leading-tight">
+                The Culinary Peak: A 'Getting Ready for Ski Season' Exclusive Dinner
+            </h1>
+            <h2 id="h2-subtitle" class="text-xl sm:text-2xl text-custom-dark-brown mt-4 max-w-3xl mx-auto font-light">
+                Your first taste of the slopes, right here in Tel Aviv.
+            </h2>
+
+
+            <!-- Key Event Details -->
+            <div class="mt-10 space-y-4 text-lg text-custom-dark-brown font-semibold tracking-wider">
+                <p id="when-label">WHEN: <span class="text-custom-accent">December 9th, 20:30</span></p>
+                <p id="where-label">WHERE: <span class="text-custom-accent">Shuk Hanamal, Tel Aviv</span></p>
+                <p id="restaurant-label">RESTAURANT: <span class="text-custom-accent">Pasta Banamal - By Oren Goldwasser and Dudu Topel</span></p>
+            </div>
+
+
+            <!-- Immediate CTA (Hero) -->
+            <button onclick="scrollToForm()" id="hero-cta-button"
+                class="mt-12 px-10 py-4 text-xl font-bold rounded-full bg-custom-dark-accent text-white uppercase tracking-wider hover:opacity-90 transition duration-300 transform hover:scale-105 glow-shadow">
+                Reserve My Spot Now
+            </button>
+        </div>
+    </div>
+
+
+    <!-- 5 Reasons Section (Engagement) -->
+    <section class="py-20 px-4 bg-custom-cream-light">
+        <div class="container-section mx-auto">
+            <p id="reasons-intro" class="text-center text-xl text-custom-dark-brown max-w-3xl mx-auto font-light mb-16">
+                Forget your typical dinner out. This is where Tel Aviv meets the Alps. Here are 5 reasons you cannot miss this inaugural event:
+            </p>
+
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+                <!-- Reason 1 -->
+                <div class="bg-custom-cream-medium p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-custom-accent text-custom-dark-brown">
+                    <i data-lucide="mountain" class="h-8 w-8 text-custom-accent mb-3"></i>
+                    <h3 id="reason1-title" class="text-xl font-bold mb-2 text-custom-dark-brown">The Ski Lodge Vibe</h3>
+                    <p id="reason1-body" class="text-sm">An unexpected transformation of the Shuk Hanamal space into a cozy, mountain-inspired retreat.</p>
+                </div>
+                <!-- Reason 2 -->
+                <div class="bg-custom-cream-medium p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-custom-tan text-custom-dark-brown">
+                    <i data-lucide="chef-hat" class="h-8 w-8 text-custom-tan mb-3"></i>
+                    <h3 id="reason2-title" class="text-xl font-bold mb-2 text-custom-dark-brown">Chef's Exclusive Menu</h3>
+                    <p id="reason2-body" class="text-sm">A single-night, multi-course culinary journey designed to warm you up from the inside out—featuring alpine-inspired ingredients and bold flavors.</p>
+                </div>
+                <!-- Reason 3 -->
+                <div class="bg-custom-cream-medium p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-custom-accent text-custom-dark-brown">
+                    <i data-lucide="medal" class="h-8 w-8 text-custom-accent mb-3"></i>
+                    <h3 id="reason3-title" class="text-xl font-bold mb-2 text-custom-dark-brown">The First of Many</h3>
+                    <p id="reason3-body" class="text-sm">Be a founding member of our new series. This is the exclusive launch event for a season of themed culinary adventures.</p>
+                </div>
+                <!-- Reason 4 -->
+                <div class="bg-custom-cream-medium p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-custom-tan text-custom-dark-brown">
+                    <i data-lucide="users" class="h-8 w-8 text-custom-tan mb-3"></i>
+                    <h3 id="reason4-title" class="text-xl font-bold mb-2 text-custom-dark-brown">Community & Connection</h3>
+                    <p id="reason4-body" class="text-sm">A shared, intimate dining experience designed to foster new friendships and great conversation, set to a curated winter soundtrack.</p>
+                </div>
+                <!-- Reason 5 -->
+                <div class="bg-custom-cream-medium p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-custom-accent text-custom-dark-brown">
+                    <i data-lucide="key" class="h-8 w-8 text-custom-accent mb-3"></i>
+                    <h3 id="reason5-title" class="text-xl font-bold mb-2 text-custom-dark-brown">Exclusive Access</h3>
+                    <p id="reason5-body" class="text-sm">Limited tickets for an event that will not be repeated. Secure your spot before they're gone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Menu Showcase & Countdown -->
+    <section class="py-20 px-4 bg-custom-cream-medium border-t border-b border-tan-medium">
+        <div class="container-section mx-auto text-center">
+            <h2 id="menu-title" class="font-serif-elegant text-4xl font-bold text-custom-accent mb-4">
+                A Taste of the Alps: The December 9th Menu
+            </h2>
+           
+            <p id="countdown-label" class="text-lg font-bold text-custom-tan uppercase mt-12 tracking-widest">Dinner Starts In:</p>
+            <!-- Countdown Clock -->
+            <div id="countdown" class="flex justify-center space-x-4 mt-4 mb-12">
+                <div class="bg-custom-cream-light p-4 rounded-lg min-w-[70px] sm:min-w-[100px] shadow-lg border-b-4 border-custom-tan">
+                    <span id="days" class="block text-4xl sm:text-5xl font-extrabold text-custom-accent">00</span>
+                    <span class="block text-xs uppercase text-custom-dark-brown mt-1">Days</span>
+                </div>
+                <div class="bg-custom-cream-light p-4 rounded-lg min-w-[70px] sm:min-w-[100px] shadow-lg border-b-4 border-custom-tan">
+                    <span id="hours" class="block text-4xl sm:text-5xl font-extrabold text-custom-accent">00</span>
+                    <span class="block text-xs uppercase text-custom-dark-brown mt-1">Hours</span>
+                </div>
+                <div class="bg-custom-cream-light p-4 rounded-lg min-w-[70px] sm:min-w-[100px] shadow-lg border-b-4 border-custom-tan">
+                    <span id="minutes" class="block text-4xl sm:text-5xl font-extrabold text-custom-accent">00</span>
+                    <span class="block text-xs uppercase text-custom-dark-brown mt-1">Mins</span>
+                </div>
+                <div class="bg-custom-cream-light p-4 rounded-lg min-w-[70px] sm:min-w-[100px] shadow-lg border-b-4 border-custom-tan">
+                    <span id="seconds" class="block text-4xl sm:text-5xl font-extrabold text-custom-accent">00</span>
+                    <span class="block text-xs uppercase text-custom-dark-brown mt-1">Secs</span>
+                </div>
+            </div>
+
+
+            <!-- Menu Details (Rustic Board Style) -->
+            <div class="menu-board p-8 md:p-12 rounded-xl border-4 border-custom-dark-brown max-w-3xl mx-auto shadow-2xl">
+                <p id="menu-placeholder-text" class="menu-item-text text-xl sm:text-2xl font-bold text-custom-dark-brown mb-4">
+                    [Place Actual Menu Details Here]
+                </p>
+                <div class="space-y-4 text-left">
+                    <p id="menu-item-1" class="menu-item-text text-lg text-white border-b border-dashed border-custom-dark-brown pb-2">
+                        • Course I: Smoked Trout Pâté on Rye Toast, Dill & Chives
+                    </p>
+                    <p id="menu-item-2" class="menu-item-text text-lg text-white border-b border-dashed border-custom-dark-brown pb-2">
+                        • Course II: Alpine Fondue with Seasonal Vegetables and Sourdough
+                    </p>
+                    <p id="menu-item-3" class="menu-item-text text-lg text-white border-b border-dashed border-custom-dark-brown pb-2">
+                        • Course III: Slow-Cooked Osso Buco over Creamy Polenta
+                    </p>
+                    <p id="menu-item-4" class="menu-item-text text-lg text-white border-b border-dashed border-custom-dark-brown pb-2">
+                        • Dessert: Apple Strudel with Vanilla Bean Ice Cream
+                    </p>
+                    <p id="menu-note" class="menu-item-text text-sm text-custom-dark-brown pt-4 italic">
+                        *Menu is subject to change based on the freshest seasonal ingredients.*
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Registration Form (The first step: Data Capture) -->
+    <section id="registration-form" class="py-20 px-4 bg-custom-cream-light">
+        <div class="container-section mx-auto max-w-xl text-center">
+            <h2 id="form-title" class="font-serif-elegant text-4xl font-bold text-custom-accent mb-4">
+                Step 1: Reservation Details
+            </h2>
+            <p id="form-intro" class="text-custom-dark-brown mb-8 text-lg">
+                Submit your party details below. Once confirmed, you will proceed to the payment screen to secure your spots.
+            </p>
+
+
+            <form id="registration-form-actual" class="space-y-6 text-left" onsubmit="handleRegistration(event)">
+               
+                <!-- Full Name -->
+                <div>
+                    <label for="fullName" id="label-name" class="block text-sm font-medium text-custom-dark-brown mb-1">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required
+                        class="w-full p-3 border border-custom-tan bg-custom-cream-medium text-custom-dark-brown rounded-lg focus:ring-custom-accent focus:border-custom-accent">
+                </div>
+
+
+                <!-- Email -->
+                <div>
+                    <label for="email" id="label-email" class="block text-sm font-medium text-custom-dark-brown mb-1">Email Address</label>
+                    <input type="email" id="email" name="email" required
+                        class="w-full p-3 border border-custom-tan bg-custom-cream-medium text-custom-dark-brown rounded-lg focus:ring-custom-accent focus:border-custom-accent">
+                </div>
+               
+                <!-- Phone Number -->
+                <div>
+                    <label for="phone" id="label-phone" class="block text-sm font-medium text-custom-dark-brown mb-1">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required
+                        class="w-full p-3 border border-custom-tan bg-custom-cream-medium text-custom-dark-brown rounded-lg focus:ring-custom-accent focus:border-custom-accent">
+                </div>
+
+
+                <!-- Number of People -->
+                <div>
+                    <label for="numPeople" id="label-num-people" class="block text-sm font-medium text-custom-dark-brown mb-1">Number of People (1-8)</label>
+                    <input type="number" id="numPeople" name="numPeople" required min="1" max="8" value="2"
+                        class="w-full p-3 border border-custom-tan bg-custom-cream-medium text-custom-dark-brown rounded-lg focus:ring-custom-accent focus:border-custom-accent">
+                </div>
+
+
+                <!-- Anything we should know? -->
+                <div>
+                    <label for="notes" id="label-notes" class="block text-sm font-medium text-custom-dark-brown mb-1">Anything we should know? (Allergies, Celebrations, etc.)</label>
+                    <textarea id="notes" name="notes" rows="3"
+                        class="w-full p-3 border border-custom-tan bg-custom-cream-medium text-custom-dark-brown rounded-lg focus:ring-custom-accent focus:border-custom-accent"></textarea>
+                </div>
+
+
+                <!-- MANDATORY CONFIRMATION TOGGLE -->
+                <div class="flex items-start pt-2">
+                    <input type="checkbox" id="payment-confirm" required
+                           class="mt-1 h-5 w-5 rounded border-custom-accent text-custom-accent focus:ring-custom-accent bg-custom-cream-medium">
+                    <label for="payment-confirm" id="label-confirm" class="ml-3 text-sm text-custom-accent font-semibold cursor-pointer">
+                        I confirm that my spot(s) will **only be reserved** after payment is successfully completed in Step 2.
+                    </label>
+                </div>
+                <!-- END MANDATORY CONFIRMATION TOGGLE -->
+
+
+
+
+                <button type="submit" id="submit-button"
+                    class="w-full mt-4 px-6 py-3 text-xl font-bold rounded-lg bg-custom-dark-accent text-white uppercase tracking-wider hover:opacity-90 transition duration-300 transform hover:scale-[1.02] glow-shadow">
+                    Submit Details & Proceed to Payment
+                </button>
+                <div id="form-message" class="mt-4 p-3 rounded-lg text-center hidden"></div>
+            </form>
+        </div>
+    </section>
+
+
+    <!-- Payment Gateway Section (The second step: Payment) -->
+    <section id="payment-gateway" class="py-20 px-4 bg-custom-cream-medium border-t-8 border-custom-tan">
+        <div class="container-section mx-auto max-w-xl text-center">
+            <h2 id="payment-title" class="font-serif-elegant text-4xl font-bold text-custom-accent mb-4">
+                Step 2: Secure Your Tickets
+            </h2>
+            <p id="payment-intro" class="text-custom-dark-brown mb-12 text-lg">
+                Your reservation details are secured. Please complete the payment using one of the options below to confirm your spot at the table.
+            </p>
+
+
+            <div class="space-y-6">
+                <!-- Bit Payment -->
+                <div class="bg-custom-cream-light p-6 rounded-xl border-l-4 border-custom-accent shadow-xl">
+                    <h3 id="bit-title" class="text-2xl font-bold mb-3 flex items-center justify-center space-x-2 text-custom-dark-brown">
+                        <i data-lucide="wallet" class="h-6 w-6 text-custom-accent"></i>
+                        <span>Pay via Bit App</span>
+                    </h3>
+                    <p id="bit-intro" class="text-lg text-custom-dark-brown mb-3">Transfer the reservation fee to:</p>
+                    <p class="text-3xl font-extrabold text-custom-tan tracking-wider">054-795-0473</p>
+                    <p id="bit-note" class="text-sm text-custom-dark-brown mt-2 italic opacity-80">Please use the full name submitted in the form as the payment description.</p>
+                </div>
+
+
+                <!-- Paybox Payment - NOW USING BOLD ACCENT -->
+                <div class="bg-custom-cream-light p-6 rounded-xl border-l-4 border-custom-accent shadow-xl">
+                    <h3 id="paybox-title" class="text-2xl font-bold mb-4 flex items-center justify-center space-x-2 text-custom-dark-brown">
+                        <i data-lucide="credit-card" class="h-6 w-6 text-custom-accent"></i>
+                        <span>Pay via Paybox</span>
+                    </h3>
+                    <a href="https://3ydbh.app.link/xip1dI89eYb?_p=c1143edc990a62eee51990fae1" target="_blank"
+                        id="paybox-button-link"
+                        class="inline-flex items-center justify-center space-x-3 w-full px-8 py-3 text-xl font-bold rounded-lg bg-custom-dark-accent text-white uppercase tracking-wider hover:opacity-90 transition duration-300 transform hover:scale-[1.02]">
+                        <i data-lucide="external-link" class="h-5 w-5"></i>
+                        <span id="paybox-button">Click to Pay with Paybox</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Cancellation Policy Section -->
+    <section id="cancellation-policy" class="py-16 px-4 bg-custom-cream-light border-t border-custom-tan">
+        <div class="container-section mx-auto max-w-2xl">
+            <h2 id="policy-title" class="font-serif-elegant text-3xl font-bold text-custom-accent mb-4 text-center">
+                Cancellation & Refund Policy
+            </h2>
+            <div class="bg-custom-cream-medium p-6 rounded-xl shadow-lg space-y-4 text-custom-dark-brown">
+                <div class="flex items-start space-x-3">
+                    <i data-lucide="calendar-check" class="h-6 w-6 text-custom-accent mt-1 flex-shrink-0"></i>
+                    <div>
+                        <p id="policy-full-title" class="font-bold text-lg">Full Refund Period:</p>
+                        <p id="policy-full-body">Until **December 7th at 23:59**. Cancellations requested before this time are eligible for a 100% refund of the reservation fee.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <i data-lucide="alert-triangle" class="h-6 w-6 text-custom-tan mt-1 flex-shrink-0"></i>
+                    <div>
+                        <p id="policy-partial-title" class="font-bold text-lg">Partial Refund Period:</p>
+                        <p id="policy-partial-body">Cancellations made **after 23:59 on December 7th** will receive a **50% refund** of the reservation fee.</p>
+                    </div>
+                </div>
+                <p id="policy-note" class="text-sm text-center pt-4 italic opacity-80">Contact the phone number provided in the footer for all cancellation requests.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Future Events (Tease & Future Engagement) -->
+    <section class="py-16 px-4 bg-custom-cream-medium">
+        <div class="container-section mx-auto text-center">
+            <h2 id="future-title" class="font-serif-elegant text-3xl font-bold text-custom-accent mb-4">
+                Don't Miss the Next Culinary Adventure
+            </h2>
+            <p id="future-intro" class="text-custom-dark-brown mb-8 max-w-2xl mx-auto">
+                The Culinary Peak is a recurring, themed dinner series. Join our exclusive group to get the earliest news, clues, and priority access to tickets for future events!
+            </p>
+           
+            <!-- WhatsApp Button - NOW USING BOLD ACCENT -->
+            <a href="https://chat.whatsapp.com/JZq3QQNFNPKLH05cX8ExRE?mode=hqrt1" target="_blank"
+                id="whatsapp-button"
+                class="inline-flex items-center space-x-3 px-8 py-3 bg-custom-dark-accent text-white text-lg font-bold rounded-lg hover:opacity-90 transition duration-300 transform hover:scale-105 shadow-xl">
+                <i data-lucide="message-square-text" class="h-6 w-6"></i>
+                <span>Join Exclusive WhatsApp Group</span>
+            </a>
+        </div>
+    </section>
+
+
+
+
+    <!-- Footer -->
+    <footer class="bg-custom-dark-accent py-12 px-4 border-t border-custom-tan">
+        <div class="container-section mx-auto text-center text-custom-cream-light">
+            <!-- Logo and Restaurant Info -->
+            <div class="flex flex-col items-center mb-6">
+                <!-- Using the provided logo URL -->
+                <img src="https://shukhanamal.co.il/wp-content/uploads/2020/10/store-logo-home_0012_pasta.png" alt="Pasta Banamal Logo"
+                     class="h-10 mb-2 filter brightness-100 invert-0">
+                <p class="text-sm font-semibold">Pasta Banamal &copy; 2025</p>
+                <p id="footer-phone" class="text-lg text-custom-cream-light mt-2">Phone: +972 54-795-0473</p>
+            </div>
+
+
+            <!-- Social Media Links (IDs added for future translation, but text is icon-based) -->
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="https://www.facebook.com/Pastabanamal" target="_blank" aria-label="Facebook"
+                   class="text-custom-cream-light hover:text-custom-tan transition duration-200">
+                    <i data-lucide="facebook" class="h-6 w-6"></i>
+                </a>
+                <a href="https://www.instagram.com/pasta_banamal?igsh=ZTRlcTcwbmQ2YWlq" target="_blank" aria-label="Instagram"
+                   class="text-custom-cream-light hover:text-custom-tan transition duration-200">
+                    <i data-lucide="instagram" class="h-6 w-6"></i>
+                </a>
+                <a href="https://chat.whatsapp.com/JZq3QQNFNPKLH05cX8ExRE?mode=hqrt1" target="_blank" aria-label="WhatsApp"
+                   class="text-custom-cream-light hover:text-custom-tan transition duration-200">
+                    <i data-lucide="send" class="h-6 w-6"></i>
+                </a>
+            </div>
+
+
+            <p id="footer-text" class="text-xs">
+                Designed with a focus on gourmet experiences and alpine ambiance.
+            </p>
+        </div>
+    </footer>
+
+
+    <!-- Sticky CTA Button -->
+    <div id="sticky-cta" class="sticky-cta">
+        <div class="container-section mx-auto flex justify-center">
+            <button onclick="scrollToForm()" id="sticky-cta-button"
+                class="w-full max-w-lg px-8 py-3 text-lg font-bold rounded-full bg-custom-dark-accent text-white uppercase tracking-wider hover:opacity-90 transition duration-300 transform hover:scale-[1.01] glow-shadow">
+                Reserve Your Spot (Limited Access)
+            </button>
+        </div>
+    </div>
+
+
+
+
+    <!-- JavaScript for Functionality and Translation -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+       
+        // --- Sticky CTA & Smooth Scroll ---
+        function scrollToForm() {
+            document.getElementById('registration-form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+
+        // --- Countdown Timer Logic (December 9th, 20:30) ---
+        // Set the date we're counting down to (Year is currently set to 2025 in the context)
+        const targetDate = new Date('December 9, 2025 20:30:00').getTime();
+
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+
+            const countdownElement = document.getElementById("countdown");
+
+
+            if (distance < 0) {
+                countdownElement.innerHTML = '<span class="text-3xl font-bold text-custom-accent">EVENT IS LIVE!</span>';
+                return;
+            }
+           
+            // Time calculations
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+            // Output the result
+            document.getElementById("days").innerHTML = String(days).padStart(2, '0');
+            document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
+        }
+
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+
+
+
+        // --- Google Sheets/Forms Integration Logic ---
+        const GOOGLE_FORM_ACTION_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdQvJQDqeHlhJHnB40Md19Xy7L9gzXgJb-rPFRQvja_Mn20KA/formResponse';
+       
+        const FORM_FIELDS = {
+            'fullName': 'entry.1691122606',    
+            'email': 'entry.1593856163',        
+            'phone': 'entry.1705663673',        
+            'numPeople': 'entry.105151044',    
+            'notes': 'entry.1481180295'        
+        };
+
+
+        function setLoading(isLoading) {
+            const submitButton = document.getElementById('submit-button');
+            const currentLang = document.documentElement.lang;
+
+
+            if (isLoading) {
+                if (currentLang === 'en') {
+                    submitButton.textContent = 'Submitting Details...';
+                } else {
+                    submitButton.textContent = 'שולח פרטים...';
+                }
+                submitButton.disabled = true;
+                submitButton.classList.add('opacity-70');
+            } else {
+                if (currentLang === 'en') {
+                    submitButton.textContent = TRANSLATIONS.en['submit-button'];
+                } else {
+                    submitButton.textContent = TRANSLATIONS.he['submit-button'];
+                }
+                submitButton.disabled = false;
+                submitButton.classList.remove('opacity-70');
+            }
+        }
+
+
+
+
+        async function handleRegistration(event) {
+            event.preventDefault();
+            const form = document.getElementById('registration-form-actual');
+            const messageBox = document.getElementById('form-message');
+            const name = document.getElementById('fullName').value;
+            const currentLang = document.documentElement.lang;
+            const T = TRANSLATIONS[currentLang];
+
+
+            // Check if the mandatory confirmation toggle is checked
+            if (!document.getElementById('payment-confirm').checked) {
+                 messageBox.classList.remove('hidden');
+                 messageBox.classList.add('bg-custom-dark-accent', 'text-white');
+                 messageBox.innerHTML = T['error-confirm'];
+                 return;
+            }
+
+
+            setLoading(true);
+            messageBox.classList.add('hidden');
+
+
+            const formData = new FormData();
+            formData.append(FORM_FIELDS.fullName, document.getElementById('fullName').value);
+            formData.append(FORM_FIELDS.email, document.getElementById('email').value);
+            formData.append(FORM_FIELDS.phone, document.getElementById('phone').value);
+            formData.append(FORM_FIELDS.numPeople, document.getElementById('numPeople').value);
+            formData.append(FORM_FIELDS.notes, document.getElementById('notes').value);
+
+
+            try {
+                // Submit details to Google Forms silently
+                await fetch(GOOGLE_FORM_ACTION_URL, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors'
+                });
+
+
+                // 1. Show a quick confirmation message
+                messageBox.classList.remove('hidden');
+                messageBox.classList.add('bg-custom-accent', 'text-white');
+                messageBox.innerHTML = `<strong>${T['success-details']}</strong> ${name}. ${T['success-proceed']}`;
+               
+                // 2. Scroll to the payment section
+                setTimeout(() => {
+                    document.getElementById('payment-gateway').scrollIntoView({ behavior: 'smooth' });
+                    messageBox.classList.add('hidden');
+                }, 1500);
+
+
+
+
+            } catch (error) {
+                console.error('Submission failed:', error);
+               
+                // Show failure message
+                messageBox.classList.remove('hidden');
+                messageBox.classList.add('bg-custom-dark-accent', 'text-white');
+                messageBox.innerHTML = T['error-failed'];
+               
+                // Still scroll them to payment as a crucial next step, even if data capture fails.
+                setTimeout(() => {
+                    document.getElementById('payment-gateway').scrollIntoView({ behavior: 'smooth' });
+                    messageBox.classList.add('hidden');
+                }, 3000);
+           
+            } finally {
+                setLoading(false);
+            }
+        }
+
+
+        // --- Language Toggle Implementation ---
+       
+        let currentLanguage = 'en';
+
+
+        // Translation Map
+        const TRANSLATIONS = {
+            en: {
+                // Main
+                'page-title': "The Culinary Peak: Exclusive Dinner Series",
+                'lang-button': "עברית (Hebrew)",
+                'h1-title': "The Culinary Peak: A 'Getting Ready for Ski Season' Exclusive Dinner",
+                'h2-subtitle': "Your first taste of the slopes, right here in Tel Aviv.",
+                'when-label': "WHEN: <span class=\"text-custom-accent\">December 9th, 20:30</span>",
+                'where-label': "WHERE: <span class=\"text-custom-accent\">Shuk Hanamal, Tel Aviv</span>",
+                'restaurant-label': "RESTAURANT: <span class=\"text-custom-accent\">Pasta Banamal - By Oren Goldwasser and Dudu Topel</span>",
+                'hero-cta-button': "Reserve My Spot Now",
+                'sticky-cta-button': "Reserve Your Spot (Limited Access)",
+               
+                // Reasons
+                'reasons-intro': "Forget your typical dinner out. This is where Tel Aviv meets the Alps. Here are 5 reasons you cannot miss this inaugural event:",
+                'reason1-title': "The Ski Lodge Vibe",
+                'reason1-body': "An unexpected transformation of the Shuk Hanamal space into a cozy, mountain-inspired retreat.",
+                'reason2-title': "Chef's Exclusive Menu",
+                'reason2-body': "A single-night, multi-course culinary journey designed to warm you up from the inside out—featuring alpine-inspired ingredients and bold flavors.",
+                'reason3-title': "The First of Many",
+                'reason3-body': "Be a founding member of our new series. This is the exclusive launch event for a season of themed culinary adventures.",
+                'reason4-title': "Community & Connection",
+                'reason4-body': "A shared, intimate dining experience designed to foster new friendships and great conversation, set to a curated winter soundtrack.",
+                'reason5-title': "Exclusive Access",
+                'reason5-body': "Limited tickets for an event that will not be repeated. Secure your spot before they're gone.",
+
+
+                // Menu
+                'menu-title': "A Taste of the Alps: The December 9th Menu",
+                'countdown-label': "DINNER STARTS IN:",
+                'menu-placeholder-text': "[Place Actual Menu Details Here]",
+                'menu-item-1': "• Course I: Smoked Trout Pâté on Rye Toast, Dill & Chives",
+                'menu-item-2': "• Course II: Alpine Fondue with Seasonal Vegetables and Sourdough",
+                'menu-item-3': "• Course III: Slow-Cooked Osso Buco over Creamy Polenta",
+                'menu-item-4': "• Dessert: Apple Strudel with Vanilla Bean Ice Cream",
+                'menu-note': "*Menu is subject to change based on the freshest seasonal ingredients.*",
+
+
+                // Form
+                'form-title': "Step 1: Reservation Details",
+                'form-intro': "Submit your party details below. Once confirmed, you will proceed to the payment screen to secure your spots.",
+                'label-name': "Full Name",
+                'label-email': "Email Address",
+                'label-phone': "Phone Number",
+                'label-num-people': "Number of People (1-8)",
+                'label-notes': "Anything we should know? (Allergies, Celebrations, etc.)",
+                'label-confirm': "I confirm that my spot(s) will **only be reserved** after payment is successfully completed in Step 2.",
+                'submit-button': "Submit Details & Proceed to Payment",
+                'error-confirm': "<strong>Error!</strong> You must confirm that reservation is contingent on payment.",
+                'success-details': "Details Submitted,",
+                'success-proceed': "Proceeding to payment...",
+                'error-failed': "<strong>Error!</strong> Failed to submit details. Please check your connection.",
+               
+                // Payment
+                'payment-title': "Step 2: Secure Your Tickets",
+                'payment-intro': "Your reservation details are secured. Please complete the payment using one of the options below to confirm your spot at the table.",
+                'bit-title': "Pay via Bit App",
+                'bit-intro': "Transfer the reservation fee to:",
+                'bit-note': "Please use the full name submitted in the form as the payment description.",
+                'paybox-title': "Pay via Paybox",
+                'paybox-button': "Click to Pay with Paybox",
+
+
+                // Policy
+                'policy-title': "Cancellation & Refund Policy",
+                'policy-full-title': "Full Refund Period:",
+                'policy-full-body': "Until **December 7th at 23:59**. Cancellations requested before this time are eligible for a 100% refund of the reservation fee.",
+                'policy-partial-title': "Partial Refund Period:",
+                'policy-partial-body': "Cancellations made **after 23:59 on December 7th** will receive a **50% refund** of the reservation fee.",
+                'policy-note': "Contact the phone number provided in the footer for all cancellation requests.",
+
+
+                // Future
+                'future-title': "Don't Miss the Next Culinary Adventure",
+                'future-intro': "The Culinary Peak is a recurring, themed dinner series. Join our exclusive group to get the earliest news, clues, and priority access to tickets for future events!",
+                'whatsapp-button': "Join Exclusive WhatsApp Group",
+
+
+                // Footer
+                'footer-text': "Designed with a focus on gourmet experiences and alpine ambiance."
+
+
+            },
+            he: {
+                // Main
+                'page-title': "הפסגה הקולינרית: סדרת ארוחות אקסקלוסיביות",
+                'lang-button': "English",
+                'h1-title': "הפסגה הקולינרית: ארוחה מיוחדת בסימן 'מתכוננים לעונת הסקי'",
+                'h2-subtitle': "הטעימה הראשונה שלכם מהמדרונות, כאן בתל אביב.",
+                'when-label': "מתי: <span class=\"text-custom-accent\">9 בדצמבר, 20:30</span>",
+                'where-label': "איפה: <span class=\"text-custom-accent\">שוק הנמל, תל אביב</span>",
+                'restaurant-label': "מסעדה: <span class=\"text-custom-accent\">פסטה בנמל - מאת אורן גולדווסר ודודו טופל</span>",
+                'hero-cta-button': "שריין מקום עכשיו",
+                'sticky-cta-button': "שריינו מקום (מספר מוגבל של מקומות)",
+
+
+                // Reasons
+                'reasons-intro': "תשכחו מארוחת ערב רגילה. זה המקום בו תל אביב פוגשת את האלפים. הנה 5 סיבות שבגללן אסור לכם לפספס את האירוע הראשון בסדרה:",
+                'reason1-title': "אווירת לודג' סקי",
+                'reason1-body': "שינוי אווירה בלתי צפוי של מתחם שוק הנמל למתחם חמים בהשראת הרי האלפים המושלגים.",
+                'reason2-title': "תפריט שף אקסקלוסיבי",
+                'reason2-body': "מסע קולינרי רב-מנות ללילה אחד בלבד, שנועד לחמם אתכם מבפנים—מציג מרכיבים בהשראת האלפים וטעמים עשירים.",
+                'reason3-title': "הראשון מבין רבים",
+                'reason3-body': "היו חלק מהאירוע המכונן של הסדרה החדשה שלנו. זהו אירוע ההשקה הבלעדי לעונה של הרפתקאות קולינריות נושאיות.",
+                'reason4-title': "קהילה וקשרים",
+                'reason4-body': "חווית סעודה משותפת ואינטימית שנועדה לטפח חברויות חדשות ושיחה נהדרת, לצלילי פסקול חורפי ייחודי.",
+                'reason5-title': "גישה בלעדית",
+                'reason5-body': "מספר מוגבל של כרטיסים לאירוע שלא יחזור על עצמו. אבטחו את מקומכם לפני שיאזלו.",
+               
+                // Menu
+                'menu-title': "טעימה מהאלפים: תפריט 9 בדצמבר",
+                'countdown-label': "הארוחה מתחילה בעוד:",
+                'menu-placeholder-text': "[פרטי התפריט המלאים יפורסמו בהמשך]",
+                'menu-item-1': "• מנה ראשונה: פטה פורל מעושן על טוסט שיפון, שמיר ועירית",
+                'menu-item-2': "• מנה שנייה: פונדו אלפיני עם ירקות עונתיים ומחמצת",
+                'menu-item-3': "• מנה עיקרית: אוסו בוקו בבישול ארוך על פולנטה קרמית",
+                'menu-item-4': "• קינוח: שטרודל תפוחים עם גלידת וניל",
+                'menu-note': "*התפריט עשוי להשתנות בהתאם למרכיבים העונתיים הטריים ביותר.*",
+
+
+                // Form
+                'form-title': "שלב 1: פרטי ההזמנה",
+                'form-intro': "אנא שלחו את פרטי המשתתפים שלכם מטה. לאחר האישור, תעברו למסך התשלום כדי להבטיח את מקומכם.",
+                'label-name': "שם מלא",
+                'label-email': "כתובת מייל",
+                'label-phone': "מספר טלפון",
+                'label-num-people': "מספר משתתפים (1-8)",
+                'label-notes': "דברים שחשוב שנדע? (אלרגיות, חגיגות מיוחדות, וכו')",
+                'label-confirm': "אני מאשר/ת שמקומי/מקומותיי ישריינו **רק** לאחר השלמת התשלום המוצלח בשלב 2.",
+                'submit-button': "שלח פרטים והמשך לתשלום",
+                'error-confirm': "<strong>שגיאה!</strong> עליך לאשר שההזמנה תלויה בתשלום.",
+                'success-details': "הפרטים נשלחו,",
+                'success-proceed': "ממשיכים לתשלום...",
+                'error-failed': "<strong>שגיאה!</strong> שליחת הפרטים נכשלה. אנא בדוק את החיבור שלך.",
+
+
+                // Payment
+                'payment-title': "שלב 2: הבטחת הכרטיסים",
+                'payment-intro': "פרטי ההזמנה שלכם שמורים. אנא השלימו את התשלום באמצעות אחת מהאפשרויות הבאות כדי לאשר את מקומכם בשולחן.",
+                'bit-title': "תשלום דרך אפליקציית Bit",
+                'bit-intro': "העבירו את דמי ההזמנה ל:",
+                'bit-note': "אנא השתמשו בשם המלא שהוגש בטופס כתיאור התשלום.",
+                'paybox-title': "תשלום דרך Paybox",
+                'paybox-button': "לחץ לתשלום באמצעות Paybox",
+
+
+                // Policy
+                'policy-title': "מדיניות ביטולים והחזרים",
+                'policy-full-title': "תקופת החזר מלא:",
+                'policy-full-body': "**עד 7 בדצמבר בשעה 23:59**. ביטולים שיבוקשו לפני מועד זה זכאים להחזר מלא של 100% מדמי ההזמנה.",
+                'policy-partial-title': "תקופת החזר חלקי:",
+                'policy-partial-body': "ביטולים שיבוצעו **לאחר 23:59 ב-7 בדצמבר** יזכו להחזר של **50%** מדמי ההזמנה.",
+                'policy-note': "לכל בקשות הביטול, צרו קשר עם מספר הטלפון המופיע בתחתית העמוד.",
+               
+                // Future
+                'future-title': "אל תפספסו את ההרפתקה הקולינרית הבאה",
+                'future-intro': "הפסגה הקולינרית היא סדרת ארוחות נושאית וחוזרת. הצטרפו לקבוצה הבלעדית שלנו כדי לקבל את החדשות, הרמזים והגישה המוקדמת לכרטיסים לאירועים הבאים!",
+                'whatsapp-button': "הצטרף לקבוצת הווטסאפ הבלעדית",
+
+
+                // Footer
+                'footer-text': "עוצב עם דגש על חוויות גורמה ואווירה אלפינית."
+
+
+            }
+        };
+
+
+        function toggleLanguage() {
+            // Determine the new language
+            const newLang = currentLanguage === 'en' ? 'he' : 'en';
+            currentLanguage = newLang;
+           
+            // Get the corresponding translation object
+            const T = TRANSLATIONS[newLang];
+            const isRTL = newLang === 'he';
+
+
+            // 1. Update HTML document direction and language attributes
+            document.documentElement.lang = newLang;
+            document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+
+
+            // 2. Update all translatable elements (using IDs)
+            for (const id in T) {
+                const element = document.getElementById(id);
+                if (element) {
+                    // Specific logic for label/input elements
+                    if (id.startsWith('label-')) {
+                        // Update innerHTML for labels that contain bold tags
+                        element.innerHTML = T[id];
+                    } else if (id === 'lang-button') {
+                        element.textContent = T[id];
+                    } else if (id === 'hero-cta-button' || id === 'sticky-cta-button' || id === 'submit-button' || id === 'whatsapp-button') {
+                        // Update text content for buttons
+                        element.textContent = T[id];
+                    } else if (id === 'when-label' || id === 'where-label' || id === 'restaurant-label') {
+                        // Update innerHTML for structured text
+                        element.innerHTML = T[id];
+                    }
+                    else if (id === 'paybox-button') {
+                        element.textContent = T[id];
+                    }
+                    else if (id === 'policy-full-body' || id === 'policy-partial-body') {
+                        element.innerHTML = T[id];
+                    }
+                    else {
+                        // Default to updating textContent
+                        element.textContent = T[id];
+                    }
+                }
+            }
+        }
+    </script>
+
+
+</body>
+</html>
+
